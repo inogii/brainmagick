@@ -84,10 +84,20 @@ def get_solver(args: tp.Any, training=True):
     elif args.model_name == "simpleconv":
         model = SimpleConv(in_channels=in_channels, out_channels=model_chout,
                            n_subjects=n_subjects, **args.simpleconv)
+        more_config = {'in_channels': in_channels, 'out_channels': model_chout, 'n_subjects': n_subjects}
+        print(more_config)
+        print(args.simpleconv)
+        with open('simple_conv_config.yaml', 'w') as file:
+            OmegaConf.save(config=more_config, f=file)
+        with open('simple_conv_params.yaml', 'w') as file:
+            OmegaConf.save(config=args.simpleconv, f=file)
     else:
         raise ValueError(f"Invalid model {args.model}")
     model.to(args.device)
 
+    with open('exp_config.yaml', 'w') as file:
+        OmegaConf.save(config=args, f=file)
+    
     # Feature model creation
     if args.feature_model_name is not None:
         feature_model_params = args.feature_model_params
