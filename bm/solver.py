@@ -120,7 +120,7 @@ class Solver(flashy.BaseSolver):
     def make_loader(self, dataset, can_be_distributed=True, **kwargs):
         defaults = {
             'batch_size': self.args.optim.batch_size,
-            'num_workers': self.args.num_workers,
+            'num_workers': 0,
             'collate_fn': SegmentBatch.collate_fn,
         }
         defaults.update(kwargs)
