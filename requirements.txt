@@ -30,5 +30,7 @@ submitit
 transformers >= 4.15.0 # for BERT and Wav2Vec embeddings
 pyyaml
 autoreject
+soundfile
+kaggle
 git+https://github.com/inogii/dora.git
 git+https://github.com/inogii/flashy.git
